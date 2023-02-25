@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+
+	<script>
+		window.onload = function () {
+			  var dps = []; //dataPoints. 
+	
+		var chart = new CanvasJS.Chart("chartContainer", {
+			animationEnabled: true,
+			exportEnabled: true,
+
+			title:{
+				text: "Bubble Chart"
+			},
+			axisX: {
+				title:"X-Axis"
+			},
+			axisY: {
+				title:"Y-Axis",
+				includeZero: true
+			},
+			legend:{
+				horizontalAlign: "left"
+			},
+			data: [{
+				type: "bubble",
+						dataPoints: dps
+                	}]
+                	   });
+                	   
+		 function addDataPointsAndRender() {
+                xValue = Number(document.getElementById("xValue").value);
+                yValue = Number(document.getElementById("yValue").value);
+                dps.push({
+                    x: xValue,
+                    y: yValue
+                });
+                chart.render();
+		}
+		 var renderButton = document.getElementById("renderButton");
+            renderButton.addEventListener("click", addDataPointsAndRender);
+        }
+	</script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+ X Value:
+    <input id="xValue" type="number" step="any" placeholder="Enter X-Value"> 
+    Y Value:
+    <input id="yValue" type="number" step="any" placeholder="Enter Y-Value">
+    <button id="renderButton">Add DataPoint & Render</button>
+    </div>
+</body>
+</html>
